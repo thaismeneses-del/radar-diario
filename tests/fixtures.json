@@ -1,0 +1,101 @@
+{
+  "fixtures": [
+    {
+      "label": "Prazo exato + prioridade alta",
+      "input": "Enviar relatório de conciliação até 05/10 [UGF] #urgente",
+      "expected": {
+        "prioridade": "Alta",
+        "prazoISO": "2025-10-05",
+        "prazoBR": "05-10-2025",
+        "status": "Backlog",
+        "projeto": "UGF"
+      }
+    },
+    {
+      "label": "Amanhã",
+      "input": "Revisar minuta de contrato amanhã [UGOC]",
+      "expected": {
+        "prioridade": "Média",
+        "prazoISO": "TODAY+1 (YYYY-MM-DD)",
+        "prazoBR": "TODAY+1 (DD-MM-YYYY)",
+        "status": "Backlog",
+        "projeto": "UGOC"
+      }
+    },
+    {
+      "label": "Primeira quinzena",
+      "input": "Revisar minuta na primeira quinzena de outubro [Sebrae Nacional]",
+      "expected": {
+        "prazoISO": "2025-10-10",
+        "prazoBR": "10-10-2025",
+        "status": "Backlog"
+      }
+    },
+    {
+      "label": "Segunda quinzena",
+      "input": "Validar parecer na segunda quinzena de outubro [UGF]",
+      "expected": {
+        "prazoISO": "2025-10-25",
+        "prazoBR": "25-10-2025",
+        "status": "Backlog"
+      }
+    },
+    {
+      "label": "Sem prazo",
+      "input": "Preparar ata da reunião com diretoria [UAC]",
+      "expected": {
+        "prazoISO": "",
+        "prazoBR": "",
+        "status": "Backlog",
+        "projeto": "UAC"
+      }
+    },
+    {
+      "label": "Aguardando terceiros",
+      "input": "Aguardando aprovação da OS 11/2025 pela área financeira [UGOC]",
+      "expected": {
+        "status": "Aguardando terceiros",
+        "projeto": "UGOC"
+      }
+    },
+    {
+      "label": "Em andamento",
+      "input": "Em andamento a revisão do RAT [UGF]",
+      "expected": {
+        "status": "Em andamento",
+        "projeto": "UGF"
+      }
+    },
+    {
+      "label": "Prioridade baixa",
+      "input": "Revisar manual de procedimentos [Sebrae SP] #baixa",
+      "expected": {
+        "prioridade": "Baixa",
+        "status": "Backlog",
+        "projeto": "Sebrae SP"
+      }
+    },
+    {
+      "label": "Idempotência (repetida)",
+      "input": "Enviar relatório de conciliação até 05/10 [UGF] #urgente",
+      "expected": {
+        "first": { "shouldRegister": true },
+        "second": { "shouldRegister": false }
+      }
+    },
+    {
+      "label": "Resumo diário",
+      "input": "TRIGGER_SUMMARY",
+      "expected": {
+        "messageContains": [
+          "📡 Radar Diário —",
+          "Novas demandas:",
+          "Sem prazo:",
+          "Próximos vencimentos (3 dias):",
+          "Aguardando terceiros:"
+        ],
+        "datesFormat": "DD-MM-YYYY"
+      }
+    }
+  ]
+}
